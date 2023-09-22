@@ -60,7 +60,7 @@ const Navbar = () => {
                 <Link to="/leaderboard" onClick={closeNav}>
                     <button
                         type="button"
-                        className="text-white block md:hidden bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-md px-9 py-2.5 mx-4 mt-3 w-60 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="text-white block md:hidden overflow-hidden bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-md px-9 py-2.5 mx-3 mt-3 w-[12rem] text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         Leaderboard
                     </button>
@@ -68,7 +68,7 @@ const Navbar = () => {
                 <Link to="/prompt" onClick={closeNav}>
                     <button
                         type="button"
-                        className="text-white block md:hidden bg-[#00df9a] hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-md text-md px-9 py-2.5 mx-4 mt-3 w-60 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        className="text-white block md:hidden bg-[#00df9a] hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-md text-md px-9 py-2.5 mx-3 mt-3 w-[12rem] text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     >
                         Generate Story
                     </button>
