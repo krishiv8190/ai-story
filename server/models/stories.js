@@ -4,11 +4,11 @@ const storiesSchema = new mongoose.Schema(
     {
         id: {
             type: String,
-            // required: true,
+            
         },
         prompt: {
             type: String,
-            // required: true,
+            
         },
         story: {
             type: String,

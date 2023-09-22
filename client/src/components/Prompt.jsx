@@ -35,7 +35,7 @@ const Prompt = () => {
                 generatedStory: generatedText,
             };
 
-            // Replace with your backend server URL
+            
             const serverUrl = process.env.REACT_APP_SERVER_URL; 
             const response = await axios.post(
                 `${serverUrl}/story/saves`,
@@ -92,7 +92,7 @@ const Prompt = () => {
         }
     };
 
-    //TESTINGGGGG
+    
 
     const handleUpvote = async () => {
         if (!isSaved) {

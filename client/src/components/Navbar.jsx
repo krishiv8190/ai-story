@@ -10,7 +10,7 @@ const Navbar = () => {
     };
 
     const closeNav = () => {
-        setNav(false); // Close the mobile menu
+        setNav(false); 
     };
 
     return (

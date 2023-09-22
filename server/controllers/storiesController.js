@@ -25,9 +25,9 @@ exports.saves = (req, res) => {
 exports.upvoteLeaderboard = async (req, res) => {
     try {
         console.log('Received upvote request:', req.body);
-        const { id } = req.body; // Assuming you send the story ID in the request body
+        const { id } = req.body; 
 
-        // Find the story by ID and increment the upvotes field
+        
         const story = await Stories.findOneAndUpdate(
             { id: id },
             { $inc: { upvotes: 1 } },
@@ -48,9 +48,9 @@ exports.upvoteLeaderboard = async (req, res) => {
 exports.upvoteInPrompt = async (req, res) => {
     try {
         console.log('Received upvote request:', req.body);
-        const { id } = req.body; // Assuming you send the story ID in the request body
+        const { id } = req.body; 
 
-        // Find the story by ID and increment the upvotes field
+        
         const story = await Stories.findOneAndUpdate(
             { _id: id },
             { $inc: { upvotes: 1 } },
@@ -76,7 +76,7 @@ exports.getStories = (req, res) => {
 
 exports.getStoriesByUpvotes = (req, res) => {
     Stories.find()
-        .sort({ upvotes: -1 }) // Sort stories by upvotes in descending order
+        .sort({ upvotes: -1 }) 
         .then((stories) => {
             res.status(200).json(stories);
         })

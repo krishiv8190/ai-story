@@ -4,7 +4,6 @@ import axios from "axios";
 const Upvoted = () => {
     const [likedStories, setLikedStories] = useState([]);
     const [activeAccordion, setActiveAccordion] = useState(null);
-    const [nav, setNav] = useState(false); // Add nav state
 
     const toggleAccordion = (id) => {
         if (id === activeAccordion) {
@@ -38,7 +37,6 @@ const Upvoted = () => {
             .post(`${url}/story/upvoteLeaderboard`, { id })
             .then(() => {
                 console.log(id);
-                // Update the upvotes count in the likedStories state
                 setLikedStories((prevStories) =>
                     prevStories.map((story) =>
                         story.id === id
@@ -67,8 +65,7 @@ const Upvoted = () => {
 
     return (
         <section className="p-5 sm:p-20 items-center relative text-white">
-            {nav && <div className="fixed inset-0 bg-gray-900 opacity-50 z-50"></div>} {/* Overlay when mobile menu is open */}
-            <div className={`p-8 container ${nav ? 'hidden' : ''}`}>
+            <div className="p-8 container">
                 <h2 className="text-4xl text-center font-semibold mb-10">
                     LeaderBoard
                 </h2>
