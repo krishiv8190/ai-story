@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { RWebShare } from "react-web-share";
 
 const Prompt = () => {
     const [promptText, setPromptText] = useState("");
@@ -35,8 +36,7 @@ const Prompt = () => {
                 generatedStory: generatedText,
             };
 
-            
-            const serverUrl = process.env.REACT_APP_SERVER_URL; 
+            const serverUrl = process.env.REACT_APP_SERVER_URL;
             const response = await axios.post(
                 `${serverUrl}/story/saves`,
                 requestBody
@@ -45,7 +45,7 @@ const Prompt = () => {
             if (response.status === 200) {
                 setIsSaved(true);
                 const savedStoryId = response.data.story._id;
-                setSavedStoryId(savedStoryId); 
+                setSavedStoryId(savedStoryId);
             } else {
                 console.error("Save API call failed");
             }
@@ -92,8 +92,6 @@ const Prompt = () => {
         }
     };
 
-    
-
     const handleUpvote = async () => {
         if (!isSaved) {
             alert("Story is not saved. Please save the story first");
@@ -105,11 +103,11 @@ const Prompt = () => {
                 return;
             }
 
-            const serverUrl = process.env.REACT_APP_SERVER_URL; 
+            const serverUrl = process.env.REACT_APP_SERVER_URL;
             const response = await axios.post(
                 `${serverUrl}/story/upvoteInPrompt`,
                 {
-                    id: savedStoryId, 
+                    id: savedStoryId,
                 }
             );
 
@@ -221,7 +219,6 @@ const Prompt = () => {
                                 >
                                     Sci-Fi
                                 </option>
-
                             </select>
                         </div>
                     </div>
@@ -234,7 +231,7 @@ const Prompt = () => {
                     >
                         {isLoading ? "GENERATING..." : "Generate Text"}
                     </button>
-                
+
                     {generatedText && !isLoading && (
                         <div className="mt-4 ">
                             <div className="mt-4">
@@ -269,6 +266,23 @@ const Prompt = () => {
                             >
                                 {isUpvoted ? "Upvoted" : "Upvote"}
                             </button>
+
+                            <RWebShare
+                                data={{
+                                    text: { generatedText },
+                                    title: "StoryCraft - AI based story generator",
+                                }}
+                                onClick={() =>
+                                    console.log("shared successfully!")
+                                }
+                            >
+                                <button
+                                    className="bg-[#00df9a] text-black uppercase font-semibold px-4 py-2 rounded-md hover:bg-gray-600 mr-3 mt-5"
+                                    onClick={handleDownload}
+                                >
+                                    Share
+                                </button>
+                            </RWebShare>
                         </div>
                     )}
                 </div>
