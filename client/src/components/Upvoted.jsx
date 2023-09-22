@@ -4,6 +4,7 @@ import axios from "axios";
 const Upvoted = () => {
     const [likedStories, setLikedStories] = useState([]);
     const [activeAccordion, setActiveAccordion] = useState(null);
+    const [nav, setNav] = useState(false); // Add nav state
 
     const toggleAccordion = (id) => {
         if (id === activeAccordion) {
@@ -14,7 +15,7 @@ const Upvoted = () => {
     };
 
     const removeFromUpvoted = (storyId) => {
-        const url = process.env.REACT_APP_SERVER_URL
+        const url = process.env.REACT_APP_SERVER_URL;
         axios
             .post(`${url}/story/deleteUpvotedStories`, {
                 storyId,
@@ -31,7 +32,7 @@ const Upvoted = () => {
 
     const upvoteStory = (id) => {
         console.log(id);
-        const url = process.env.REACT_APP_SERVER_URL
+        const url = process.env.REACT_APP_SERVER_URL;
 
         axios
             .post(`${url}/story/upvoteLeaderboard`, { id })
@@ -52,7 +53,7 @@ const Upvoted = () => {
     };
 
     useEffect(() => {
-        const url = process.env.REACT_APP_SERVER_URL
+        const url = process.env.REACT_APP_SERVER_URL;
         axios
             .post(`${url}/story/getUpvotedStories`)
             .then((response) => {
@@ -66,13 +67,14 @@ const Upvoted = () => {
 
     return (
         <section className="p-5 sm:p-20 items-center relative text-white">
-            <div className="p-8 container">
+            {nav && <div className="fixed inset-0 bg-gray-900 opacity-50 z-50"></div>} {/* Overlay when mobile menu is open */}
+            <div className={`p-8 container ${nav ? 'hidden' : ''}`}>
                 <h2 className="text-4xl text-center font-semibold mb-10">
-                    Upvoted Stories
+                    LeaderBoard
                 </h2>
-                <div className="space-y-6 ">
+                <div className="space-y-16 ">
                     {likedStories
-                        .sort((a, b) => b.upvotes - a.upvotes) // Sort by upvotes in decreasing order
+                        .sort((a, b) => b.upvotes - a.upvotes)
                         .map((story) => (
                             <div
                                 key={story.id}
@@ -80,7 +82,7 @@ const Upvoted = () => {
                             >
                                 <button
                                     type="button"
-                                    className="absolute right-14 top-2 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                    className="absolute -bottom-16 right-2  text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                     onClick={() => removeFromUpvoted(story.id)}
                                 >
                                     Remove
@@ -88,7 +90,7 @@ const Upvoted = () => {
 
                                 <button
                                     type="button"
-                                    className="absolute right-44 top-2 text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                                    className="absolute -bottom-16 right-44  text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                                     onClick={() => upvoteStory(story.id)}
                                 >
                                     Upvote{" "}
@@ -105,7 +107,6 @@ const Upvoted = () => {
                                         {story.prompt}
                                     </h2>
                                     <div className="flex items-center">
-                                      
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className={`h-6 w-6 transition-transform ${

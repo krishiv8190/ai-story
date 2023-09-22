@@ -9,6 +9,10 @@ const Navbar = () => {
         setNav(!nav);
     };
 
+    const closeNav = () => {
+        setNav(false); // Close the mobile menu
+    };
+
     return (
         <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white">
             <Link to="/">
@@ -17,18 +21,18 @@ const Navbar = () => {
                 </h1>
             </Link>
             <ul className="hidden md:flex">
-                <Link to="/leaderboard">
+                <Link to="/leaderboard" onClick={closeNav}>
                     <button
                         type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         Leaderboard
                     </button>
                 </Link>
-                <Link to="/prompt">
+                <Link to="/prompt" onClick={closeNav}>
                     <button
                         type="button"
-                        class="text-white bg-[#00df9a] hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        className="text-white bg-[#00df9a] hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     >
                         Generate Story
                     </button>
@@ -44,18 +48,31 @@ const Navbar = () => {
             <ul
                 className={
                     nav
-                        ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500"
+                        ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 z-20"
                         : "ease-in-out duration-500 fixed left-[-100%]"
                 }
             >
-                <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4">
-                    REACT.
-                </h1>
-                <li className="p-4 border-b border-gray-600">Home</li>
-                <li className="p-4 border-b border-gray-600">Company</li>
-                <li className="p-4 border-b border-gray-600">Resources</li>
-                <li className="p-4 border-b border-gray-600">About</li>
-                <li className="p-4">Contact</li>
+                <Link to="/" onClick={closeNav}>
+                    <h1 className="w-full text-4xl font-bold text-[#00df9a] m-4">
+                        StoryCraft
+                    </h1>
+                </Link>
+                <Link to="/leaderboard" onClick={closeNav}>
+                    <button
+                        type="button"
+                        className="text-white block md:hidden bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-md px-9 py-2.5 mx-4 mt-3 w-60 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                        Leaderboard
+                    </button>
+                </Link>
+                <Link to="/prompt" onClick={closeNav}>
+                    <button
+                        type="button"
+                        className="text-white block md:hidden bg-[#00df9a] hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-md text-md px-9 py-2.5 mx-4 mt-3 w-60 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >
+                        Generate Story
+                    </button>
+                </Link>
             </ul>
         </div>
     );
